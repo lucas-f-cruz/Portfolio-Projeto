@@ -6,6 +6,7 @@
 import { FORMACAO } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
 import { Fade } from "./Fade";
+import perfilimg from "../img/perfil.jpeg";
 
 export function FormacaoSection() {
   const G = TEMA.verde;
@@ -40,9 +41,9 @@ export function FormacaoSection() {
         {/* Ilustração */}
         <Fade delay={200}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16 }}>
-            <div style={{ fontSize: 80 }}>🎓</div>
+            <div style={{ fontSize: 80 }}> <img src={perfilimg} alt="perfil" height="400px" /> </div>
             <p style={{ fontFamily: TEMA.fonteDisplay, fontSize: 12, color: G, letterSpacing: 2, textAlign: "center" }}>
-              Formação
+              Lucas Cruz
             </p>
           </div>
         </Fade>
