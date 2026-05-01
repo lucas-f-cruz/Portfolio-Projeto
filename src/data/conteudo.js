@@ -66,11 +66,19 @@ export const PROJETOS = [
   },
   {
     nome: "Portfólio Pessoal",
-    ferramentas: ["React", "Vite", "CSS", "Vercel"],
+    ferramentas: ["React", "Vite", "CSS"],
     funcao: "Desenvolvedor Frontend",
     descricao: "Portfólio profissional com animações, seções de projetos, skills, experiência e formulário de contato.",
     url: "#",
     github: "https://github.com/lucas-f-cruz",
+  },
+  {
+    nome: "Med Alert",
+    ferramentas: ["React", "Vite", "CSS"],
+    funcao: "Desenvolvedor Frontend e Backend",
+    descricao: "Site de alerta médico com informações de saúde dos medicamentos cadastrados, usando React para frontend e backend integração com API de medicamentos futuro.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/medalert",
   },
 ];
 
@@ -83,7 +91,7 @@ export const EXPERIENCIAS = [
     desc: "Desenvolvimento de sites e sistemas para clientes locais.",
   },
   {
-    periodo: "2024 - Atual",
+    periodo: "2026 - Atual",
     cargo: "Desenvolvedor Frontend",
     empresa: "Projetos Pessoais",
     desc: "Criação de interfaces modernas com React e integração com APIs.",
@@ -92,10 +100,10 @@ export const EXPERIENCIAS = [
 
 // ── FORMAÇÃO ─────────────────────────────────────────────────
 export const FORMACAO = [
-  { periodo: "2024 - Atual", curso: "Ciência da Computação", instituicao: "Estácio (Cursando)" },
-  { periodo: "2024 - Atual", curso: "Desenvolvedor Full Stack", instituicao: "Dev Club (Cursando)" },
-  { periodo: "2024", curso: "Desenvolvedor Front End", instituicao: "Dev Club (Cursando)" },
-  { periodo: "2013 - 2016", curso: "Técnico em Informática (Ensino Médio Integrado)", instituicao: "IFRN/JC" },
+  { periodo: "2025-2026 - Atual", curso: "Ciência da Computação", instituicao: "Estácio (Cursando)" },
+  { periodo: "2026 - Atual", curso: "Desenvolvedor Full Stack", instituicao: "Dev Club (Cursando)" },
+  { periodo: "2026", curso: "Desenvolvedor Front End", instituicao: "Dev Club (Cursando)" },
+  { periodo: "2012 - 2016", curso: "Técnico em Informática (Ensino Médio Integrado)", instituicao: "IFRN/JC" },
 ];
 
 // ── NAVEGAÇÃO ────────────────────────────────────────────────
