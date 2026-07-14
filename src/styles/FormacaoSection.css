@@ -1,0 +1,13 @@
+.formacao-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .formacao-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}

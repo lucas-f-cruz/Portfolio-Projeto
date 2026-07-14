@@ -1,0 +1,23 @@
+.projeto-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.projeto-codigo {
+    overflow-x: auto;
+}
+
+@media (max-width:768px){
+
+    .projeto-links{
+        flex-direction: column;
+    }
+
+    .projeto-links a{
+        width:100%;
+        box-sizing:border-box;
+        text-align:center;
+    }
+
+}

@@ -5,6 +5,7 @@
 // ============================================================
 import { NAV_LINKS, PERFIL } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
+import "../styles/Navbar.css";
 
 export function Navbar({ scrolled, menuOpen, setMenuOpen, active, onNavigate }) {
   const G = TEMA.verde;
@@ -14,9 +15,9 @@ export function Navbar({ scrolled, menuOpen, setMenuOpen, active, onNavigate }) 
     <>
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, height: 64,
-        background:    scrolled ? "rgba(13,27,42,0.97)" : "transparent",
+        background: scrolled ? "rgba(13,27,42,0.97)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom:  scrolled ? `1px solid ${TEMA.azulBorda}` : "none",
+        borderBottom: scrolled ? `1px solid ${TEMA.azulBorda}` : "none",
         transition: "all 0.3s ease",
         padding: "0 5%", display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
@@ -26,7 +27,9 @@ export function Navbar({ scrolled, menuOpen, setMenuOpen, active, onNavigate }) 
         </button>
 
         {/* Links desktop */}
-        <div className="desk" style={{ display: "flex", gap: 28, alignItems: "center" }}>
+        <div
+          className="nav-desktop"
+        >
           {NAV_LINKS.map(({ label, id }) => (
             <button key={id} onClick={() => onNavigate(id)}
               style={{
@@ -52,9 +55,13 @@ export function Navbar({ scrolled, menuOpen, setMenuOpen, active, onNavigate }) 
         </div>
 
         {/* Hamburguer */}
-        <button className="ham" onClick={() => setMenuOpen(!menuOpen)} style={{
-          display: "none", background: "none", border: "none",
-          cursor: "pointer", color: G, fontSize: 24, alignItems: "center",
+        <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          color: G,
+          fontSize: 28,
+          padding: 0,
         }}>☰</button>
       </nav>
 

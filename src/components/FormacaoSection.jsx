@@ -7,13 +7,20 @@ import { FORMACAO } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
 import { Fade } from "./Fade";
 import perfilimg from "../img/perfil.jpeg";
+import "../styles/FormacaoSection.css";
 
 export function FormacaoSection() {
   const G = TEMA.verde;
 
   return (
     <section id="formacao" style={{ padding: "80px 5%", background: TEMA.azul }}>
-      <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+      <div
+        className="formacao-grid"
+        style={{
+          maxWidth: 900,
+          margin: "0 auto",
+        }}
+      >
 
         {/* Timeline */}
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -40,8 +47,29 @@ export function FormacaoSection() {
 
         {/* Ilustração */}
         <Fade delay={200}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16 }}>
-            <div style={{ fontSize: 80 }}> <img src={perfilimg} alt="perfil" height="400px" /> </div>
+          <div
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16 }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* <img src={perfilimg} alt="perfil" height="400px" /> */}
+              <img
+                src={perfilimg}
+                alt="perfil"
+                style={{
+                  width: "100%",
+                  maxWidth: 350,
+                  height: "auto",
+                  borderRadius: 12,
+                  objectFit: "cover",
+                }}
+              />
+            </div>
             <p style={{ fontFamily: TEMA.fonteDisplay, fontSize: 12, color: G, letterSpacing: 2, textAlign: "center" }}>
               Lucas Cruz
             </p>

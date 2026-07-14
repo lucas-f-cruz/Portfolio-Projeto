@@ -1,0 +1,20 @@
+.contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+@media (max-width: 768px) {
+    .contato-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .social-links {
+        flex-direction: column;
+    }
+
+    .social-links a {
+        text-align: center;
+    }
+}

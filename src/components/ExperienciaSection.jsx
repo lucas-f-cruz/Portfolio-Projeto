@@ -6,17 +6,34 @@
 import { EXPERIENCIAS } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
 import { Fade } from "./Fade";
+import "../styles/ExperienciaSection.css";
 
 export function ExperienciaSection() {
   const G = TEMA.verde;
 
   return (
     <section id="experiencia" style={{ padding: "80px 5%", background: TEMA.azulMedio }}>
-      <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "start" }}>
+      <div
+        className="experiencia-grid"
+        style={{
+          maxWidth: 900,
+          margin: "0 auto",
+        }}
+      >
 
         {/* Ilustração lado esquerdo */}
         <Fade>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16 }}>
+          <div
+            className="experiencia-ilustracao"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              gap: 16,
+            }}
+          >
             <div style={{ fontSize: 80 }}>💻</div>
             <p style={{ fontFamily: TEMA.fonteDisplay, fontSize: 12, color: G, letterSpacing: 2, textAlign: "center" }}>
               Experiências

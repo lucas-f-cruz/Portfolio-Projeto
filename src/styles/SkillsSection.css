@@ -1,0 +1,22 @@
+.skills-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:32px;
+}
+
+.skill-card{
+    width:90px;
+}
+
+@media(max-width:768px){
+
+    .skills-grid{
+        gap:20px;
+    }
+
+    .skill-card{
+        width:80px;
+    }
+
+}

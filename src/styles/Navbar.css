@@ -1,0 +1,23 @@
+.nav-desktop {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav-hamburger {
+    display: none;
+}
+
+@media (max-width:768px) {
+
+    .nav-desktop {
+        display: none;
+    }
+
+    .nav-hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}

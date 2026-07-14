@@ -1,0 +1,17 @@
+.experiencia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .experiencia-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .experiencia-ilustracao {
+        order: -1;
+    }
+}

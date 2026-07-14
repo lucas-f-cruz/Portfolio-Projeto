@@ -7,6 +7,7 @@ import { useState } from "react";
 import { PROJETOS } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
 import { Fade } from "./Fade";
+import "../styles/ProjetosSection.css";
 
 export function ProjetosSection() {
   const [selecionado, setSelecionado] = useState(0);
@@ -34,7 +35,7 @@ export function ProjetosSection() {
                 transition: "all 0.2s",
               }}>
                 <div style={{ display: "flex", gap: 5 }}>
-                  {["#ff5f57","#febc2e","#28c840"].map((c, j) => (
+                  {["#ff5f57", "#febc2e", "#28c840"].map((c, j) => (
                     <div key={j} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />
                   ))}
                 </div>
@@ -48,9 +49,19 @@ export function ProjetosSection() {
 
         {/* Detalhe do projeto selecionado */}
         <Fade>
-          <div style={{ background: TEMA.azulMedio, border: `1px solid ${TEMA.azulBorda}`, borderRadius: 8, padding: "24px 28px", fontFamily: TEMA.fonteDisplay, fontSize: 13 }}>
+          <div
+            className="projeto-codigo"
+            style={{
+              background: TEMA.azulMedio,
+              border: `1px solid ${TEMA.azulBorda}`,
+              borderRadius: 8,
+              padding: "20px",
+              fontFamily: TEMA.fonteDisplay,
+              fontSize:"clamp(12px,2vw,13px)",
+            }}
+          >
             <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
-              {["#ff5f57","#febc2e","#28c840"].map((c, i) => (
+              {["#ff5f57", "#febc2e", "#28c840"].map((c, i) => (
                 <div key={i} style={{ width: 12, height: 12, borderRadius: "50%", background: c }} />
               ))}
             </div>
@@ -72,7 +83,7 @@ export function ProjetosSection() {
               <div>{"}"}</div>
             </div>
 
-            <div style={{ display: "flex", gap: 12, marginTop: 20 }}>
+            <div className="projeto-links">
               <a href={projeto.url} target="_blank" rel="noreferrer" style={{
                 background: G, color: TEMA.azul, padding: "8px 20px",
                 fontFamily: TEMA.fonteTitulo, fontSize: 12, fontWeight: 600,

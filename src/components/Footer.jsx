@@ -11,7 +11,17 @@ export function Footer() {
       borderTop: `1px solid ${TEMA.azulBorda}`,
       display: "flex", justifyContent: "center", alignItems: "center",
     }}>
-      <p style={{ fontFamily: TEMA.fonteTexto, fontSize: 13, color: TEMA.cinza }}>
+      <p
+        style={{
+          background: TEMA.azul,
+          padding: "24px 5%",
+          borderTop: `1px solid ${TEMA.azulBorda}`,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
         © {new Date().getFullYear()} Portfólio desenvolvido por{" "}
         <span style={{ color: TEMA.verde }}>{PERFIL.nome}</span>
       </p>

@@ -1,0 +1,45 @@
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-social {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+@media (max-width:768px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+        text-align:center;
+    }
+
+    .hero-code{
+        display:none;
+    }
+
+    .hero-social{
+        justify-content:center;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .hero-buttons button{
+        width:100%;
+    }
+
+}

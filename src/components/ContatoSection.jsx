@@ -6,6 +6,7 @@
 import { PERFIL } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
 import { Fade } from "./Fade";
+import "../styles/ContatoSection.css";
 
 export function ContatoSection() {
   const G = TEMA.verde;
@@ -25,7 +26,7 @@ export function ContatoSection() {
           </h2>
         </Fade>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60 }}>
+        <div className="contato-grid">
 
           {/* Formulário */}
           <Fade>
@@ -67,9 +68,16 @@ export function ContatoSection() {
               ))}
 
               {/* Links sociais */}
-              <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
+              <div
+                className="social-links"
+                style={{
+                  display: "flex",
+                  gap: 12,
+                  marginTop: 8,
+                }}
+              >
                 {[
-                  { url: PERFIL.github,   label: "GitHub"   },
+                  { url: PERFIL.github, label: "GitHub" },
                   { url: PERFIL.linkedin, label: "LinkedIn" },
                 ].map(({ url, label }) => (
                   <a key={label} href={url} target="_blank" rel="noreferrer" style={{

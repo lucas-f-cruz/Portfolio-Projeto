@@ -7,6 +7,7 @@
 import { useState, useEffect } from "react";
 import { PERFIL, CODIGO_HERO } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
+import "../styles/HeroSection.css"
 
 function CodigoAnimado() {
   const [linhasVisiveis, setLinhasVisiveis] = useState(0);
@@ -18,10 +19,10 @@ function CodigoAnimado() {
   }, [linhasVisiveis]);
 
   const cores = {
-    chave:   TEMA.branco,
-    valor:   "#e06c75",
-    bool:    TEMA.verde,
-    fn:      "#61afef",
+    chave: TEMA.branco,
+    valor: "#e06c75",
+    bool: TEMA.verde,
+    fn: "#61afef",
     retorno: "#c678dd",
   };
 
@@ -33,7 +34,7 @@ function CodigoAnimado() {
     }}>
       {/* Dots de janela */}
       <div style={{ display: "flex", gap: 6, marginBottom: 16 }}>
-        {["#ff5f57","#febc2e","#28c840"].map((c, i) => (
+        {["#ff5f57", "#febc2e", "#28c840"].map((c, i) => (
           <div key={i} style={{ width: 12, height: 12, borderRadius: "50%", background: c }} />
         ))}
       </div>
@@ -60,7 +61,16 @@ export function HeroSection({ onNavigate }) {
       minHeight: "100vh", display: "flex", alignItems: "center",
       background: TEMA.azul, padding: "80px 5% 40px",
     }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 60, alignItems: "center" }}>
+      <div
+        className="hero-grid"
+        style={{
+          // maxWidth: 1100,
+          // margin: "0 auto",
+          // width: "100%",
+          maxWidth: 500,
+          margin: "0 auto 32px",
+        }}
+      >
 
         {/* Texto esquerda */}
         <div>
@@ -77,9 +87,11 @@ export function HeroSection({ onNavigate }) {
           </p>
 
           {/* Ícones sociais */}
-          <div style={{ display: "flex", gap: 12, marginBottom: 32 }}>
+          <div
+            className="hero-social"
+          >
             {[
-              { url: PERFIL.github,   label: "GH" },
+              { url: PERFIL.github, label: "GH" },
               { url: PERFIL.linkedin, label: "in" },
             ].map(({ url, label }) => (
               <a key={label} href={url} target="_blank" rel="noreferrer" style={{
@@ -95,7 +107,9 @@ export function HeroSection({ onNavigate }) {
             ))}
           </div>
 
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+          <div
+            className="hero-buttons"
+          >
             <button onClick={() => onNavigate("contato")} style={{
               background: G, color: TEMA.azul, border: "none", cursor: "pointer",
               padding: "12px 28px", fontFamily: TEMA.fonteTitulo,
@@ -125,9 +139,11 @@ export function HeroSection({ onNavigate }) {
       </div>
 
       <style>{`
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        @media(max-width:768px){ .hero-code{display:none} }
-      `}</style>
+    @keyframes blink {
+    0%,100%{opacity:1}
+    50%{opacity:0}
+}
+`}</style>
     </section>
   );
 }
