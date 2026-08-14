@@ -1,20 +1,32 @@
 .contato-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.contato-globo-bloco {
+  display: grid;
+  grid-template-columns: minmax(220px, 380px) 1fr;
+  align-items: center;
+  gap: 40px;
 }
 
 @media (max-width: 768px) {
-    .contato-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
+  .contato-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
 
-    .social-links {
-        flex-direction: column;
-    }
+  .contato-globo-bloco {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 
-    .social-links a {
-        text-align: center;
-    }
+  .social-links {
+    flex-direction: column;
+  }
+
+  .social-links a {
+    text-align: center;
+  }
 }

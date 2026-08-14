@@ -1,45 +1,52 @@
 .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
 }
 
 .hero-buttons {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .hero-social {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 32px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
 }
 
-@media (max-width:768px){
+.hero-code-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
-    .hero-grid{
-        grid-template-columns:1fr;
-        gap:40px;
-        text-align:center;
-    }
+.hero-code-scroll::-webkit-scrollbar {
+  display: none;
+}
 
-    .hero-code{
-        display:none;
-    }
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
 
-    .hero-social{
-        justify-content:center;
-    }
+  .hero-code {
+    display: none;
+  }
 
-    .hero-buttons{
-        flex-direction:column;
-        width:100%;
-    }
+  .hero-social {
+    justify-content: center;
+  }
 
-    .hero-buttons button{
-        width:100%;
-    }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
 
+  .hero-buttons button {
+    width: 100%;
+  }
 }

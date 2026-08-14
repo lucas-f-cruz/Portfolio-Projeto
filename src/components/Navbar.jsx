@@ -21,10 +21,28 @@ export function Navbar({ scrolled, menuOpen, setMenuOpen, active, onNavigate }) 
         transition: "all 0.3s ease",
         padding: "0 5%", display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
-        {/* Logo */}
-        <button onClick={() => onNavigate("hero")} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: TEMA.fonteDisplay, fontSize: 20, color: G, letterSpacing: 2 }}>
+        {/* Logo — estilo prompt de terminal */}
+        <button onClick={() => onNavigate("hero")} style={{
+          background: "none", border: "none", cursor: "pointer",
+          fontFamily: TEMA.fonteDisplay, fontSize: 20, color: G, letterSpacing: 2,
+          display: "flex", alignItems: "center", gap: 8,
+        }}>
+          <span style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center",
+            width: 26, height: 26, borderRadius: 6,
+            background: TEMA.azulMedio, border: `1px solid ${TEMA.azulBorda}`,
+            fontSize: 13, color: G,
+          }}>&gt;_</span>
           {primeiroNome}<span style={{ color: TEMA.branco }}>.dev</span>
+          <span className="logo-cursor" style={{
+            display: "inline-block", width: 2, height: 16,
+            background: G, animation: "logoBlink 1s ease infinite",
+          }} />
         </button>
+
+        <style>{`
+          @keyframes logoBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        `}</style>
 
         {/* Links desktop */}
         <div

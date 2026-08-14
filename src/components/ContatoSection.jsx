@@ -6,6 +6,7 @@
 import { PERFIL } from "../data/conteudo";
 import { TEMA } from "../styles/tema";
 import { Fade } from "./Fade";
+import { Globe } from "./Globe";
 import "../styles/ContatoSection.css";
 
 export function ContatoSection() {
@@ -19,8 +20,31 @@ export function ContatoSection() {
   return (
     <section id="contato" style={{ padding: "80px 5%", background: TEMA.azulMedio }}>
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
+
+        {/* Bloco do globo interativo */}
         <Fade>
-          <p style={{ fontFamily: TEMA.fonteDisplay, fontSize: 13, color: G, marginBottom: 8, letterSpacing: 2 }}>Contato</p>
+          <div className="contato-globo-bloco">
+            <Globe />
+            <div className="contato-globo-texto">
+              <p style={{ fontFamily: TEMA.fonteTexto, fontSize: 16, color: TEMA.branco, lineHeight: 1.6, marginBottom: 20 }}>
+                O que você faria se um desenvolvedor estivesse a apenas um clique de distância?
+              </p>
+              <p style={{ fontFamily: TEMA.fonteTexto, fontSize: 15, color: TEMA.cinza, lineHeight: 1.6, marginBottom: 24 }}>
+                Seja para iniciar um novo projeto ou apenas pra dizer olá, adoraria ouvir de você. Você também pode me encontrar no{" "}
+                <a href={PERFIL.github} target="_blank" rel="noreferrer" style={{ color: G }}>GitHub</a>{" "}
+                ou no{" "}
+                <a href={PERFIL.linkedin} target="_blank" rel="noreferrer" style={{ color: G }}>LinkedIn</a>.
+              </p>
+              <a href={`mailto:${PERFIL.email}`} style={{
+                fontFamily: TEMA.fonteTitulo, fontSize: "clamp(20px,3vw,28px)", fontWeight: 700,
+                color: TEMA.branco, textDecoration: "none",
+              }}>{PERFIL.email}</a>
+            </div>
+          </div>
+        </Fade>
+
+        <Fade>
+          <p style={{ fontFamily: TEMA.fonteDisplay, fontSize: 13, color: G, marginBottom: 8, letterSpacing: 2, marginTop: 64 }}>Contato</p>
           <h2 style={{ fontFamily: TEMA.fonteTitulo, fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 600, color: TEMA.branco, marginBottom: 48 }}>
             Entre em <span style={{ color: G }}>contato</span>
           </h2>

@@ -1,23 +1,154 @@
-.projeto-links {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
+.projetos-section {
+  position: relative;
+  height: 100vh;
 }
 
-.projeto-codigo {
-    overflow-x: auto;
+.projetos-track {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  width: fit-content;
 }
 
-@media (max-width:768px){
+/* Slide de projeto: texto + painel lado a lado, com LARGURA FIXA
+   em px pros dois (não max-width/flex-basis) — isso garante que
+   o bloco tenha sempre o mesmo tamanho, não importa a largura da
+   tela nem o tamanho do texto. Se a tela for menor que o total
+   necessário, o slide ganha scroll horizontal próprio em vez de
+   espremer o conteúdo (só acontece em janelas bem estreitas de
+   desktop; no mobile o layout é outro, ver @media abaixo). */
+.projeto-slide {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 0 8%;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 
-    .projeto-links{
-        flex-direction: column;
-    }
+.projeto-slide::-webkit-scrollbar {
+  display: none;
+}
 
-    .projeto-links a{
-        width:100%;
-        box-sizing:border-box;
-        text-align:center;
-    }
+.projeto-slide-texto {
+  width: 460px;
+  flex-shrink: 0;
+  text-align: left;
+}
 
+/* Slide 0 (grid de miniaturas) não segue o layout row acima —
+   é uma coluna centralizada (mantém a largura 100vw da base). */
+.projeto-slide-grid {
+  flex-direction: column;
+  align-items: center;
+  overflow-x: visible;
+}
+
+/* Caixa da descrição com ALTURA FIXA + scroll interno — é a parte
+   que mais varia de tamanho entre projetos (descrições curtas e
+   longas). Fixando essa caixa, o bloco inteiro do texto fica com
+   a mesma altura sempre, projeto A ou projeto Z. */
+.projeto-slide-desc-box {
+  height: 100px;
+  overflow-y: auto;
+  margin-bottom: 14px;
+  padding-right: 8px;
+}
+
+.projeto-slide-mockup {
+  width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Grid de miniaturas — todos os cards com a MESMA altura, não
+   importa o tamanho do nome do projeto (o nome longo é cortado
+   com reticências em vez de esticar o card). */
+.projetos-grid-mini {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.projeto-mini-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px;
+  border: 1px solid;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+  font: inherit;
+  text-align: left;
+  height: 100%;
+}
+
+.projeto-mini-card-nome {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projetos-index {
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  text-align: right;
+}
+
+/* Em telas pequenas o pin horizontal é desativado (ver JS) —
+   aqui a seção vira uma lista vertical normal, e o índice
+   lateral não faz sentido nesse layout, então some. */
+@media (max-width: 768px) {
+  .projetos-section {
+    height: auto;
+  }
+
+  .projetos-track {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  .projeto-slide {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 60px 6%;
+    overflow-x: visible;
+  }
+
+  .projeto-slide-texto {
+    width: 100%;
+  }
+
+  .projeto-slide-mockup {
+    width: 100%;
+  }
+
+  .projetos-grid-mini {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projetos-index {
+    display: none;
+  }
 }

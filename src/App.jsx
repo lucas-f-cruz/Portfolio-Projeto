@@ -7,20 +7,32 @@
 // ============================================================
 import { useState, useEffect } from "react";
 import { TEMA } from "./styles/tema";
+import { SmoothScroll } from "./hooks/SmoothScroll";
+import { useLenis } from "./hooks/lenisContext";
 
-import { Navbar }            from "./components/Navbar";
-import { HeroSection }       from "./components/HeroSection";
-import { SkillsSection }     from "./components/SkillsSection";
+import { Navbar } from "./components/Navbar";
+import { CustomCursor } from "./components/CustomCursor";
+import { HeroSection } from "./components/HeroSection";
+import { SkillsSection } from "./components/SkillsSection";
 import { ExperienciaSection } from "./components/ExperienciaSection";
-import { FormacaoSection }   from "./components/FormacaoSection";
-import { ProjetosSection }   from "./components/ProjetosSection";
-import { ContatoSection }    from "./components/ContatoSection";
-import { Footer }            from "./components/Footer";
+import { FormacaoSection } from "./components/FormacaoSection";
+import { ProjetosSection } from "./components/ProjetosSection";
+import { ContatoSection } from "./components/ContatoSection";
+import { Footer } from "./components/Footer";
 
 export default function App() {
+  return (
+    <SmoothScroll>
+      <AppContent />
+    </SmoothScroll>
+  );
+}
+
+function AppContent() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [active,   setActive]   = useState("hero");
+  const [active, setActive] = useState("hero");
+  const lenisRef = useLenis();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60);
@@ -29,7 +41,12 @@ export default function App() {
   }, []);
 
   const onNavigate = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(id);
+    if (el && lenisRef?.current) {
+      lenisRef.current.scrollTo(el, { duration: 1.2 });
+    } else {
+      el?.scrollIntoView({ behavior: "smooth" }); // fallback caso o Lenis ainda não tenha montado
+    }
     setActive(id);
     setMenuOpen(false);
   };
@@ -42,6 +59,9 @@ export default function App() {
         body { overflow-x: hidden; }
         input, textarea { outline: none; }
         input:focus, textarea:focus { border-color: ${TEMA.verde} !important; }
+        @media (pointer: fine) {
+          a, button, [role='button'], body { cursor: none; }
+        }
         @media(max-width: 768px) {
           .desk    { display: none !important; }
           .ham     { display: flex !important; }
@@ -56,13 +76,15 @@ export default function App() {
         onNavigate={onNavigate}
       />
 
+      <CustomCursor />
+
       <main>
-        <HeroSection        onNavigate={onNavigate} />
-        <SkillsSection      />
+        <HeroSection onNavigate={onNavigate} />
+        <SkillsSection />
         <ExperienciaSection />
-        <FormacaoSection    />
-        <ProjetosSection    />
-        <ContatoSection     />
+        <FormacaoSection />
+        <ProjetosSection />
+        <ContatoSection />
       </main>
 
       <Footer />
