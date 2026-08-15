@@ -1,0 +1,48 @@
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid;
+}
+
+.expertise-card {
+  padding: 28px 26px;
+  border-left: 1px solid;
+}
+
+.expertise-card:first-child {
+  border-left: none;
+}
+
+.expertise-codigo {
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.expertise-codigo-linha {
+  display: flex;
+  gap: 10px;
+  padding-left: 4px;
+}
+
+.expertise-codigo-barra {
+  flex-shrink: 0;
+  width: 0;
+  border-left: 2px solid;
+  margin: 2px 0;
+}
+
+@media (max-width: 768px) {
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-card {
+    border-left: none;
+    border-top: 1px solid;
+  }
+
+  .expertise-card:first-child {
+    border-top: none;
+  }
+}

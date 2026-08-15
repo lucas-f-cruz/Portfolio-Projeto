@@ -13,6 +13,7 @@ import { useLenis } from "./hooks/lenisContext";
 import { Navbar } from "./components/Navbar";
 import { CustomCursor } from "./components/CustomCursor";
 import { HeroSection } from "./components/HeroSection";
+import { ExpertiseSection } from "./components/ExpertiseSection";
 import { SkillsSection } from "./components/SkillsSection";
 import { ExperienciaSection } from "./components/ExperienciaSection";
 import { FormacaoSection } from "./components/FormacaoSection";
@@ -80,6 +81,7 @@ function AppContent() {
 
       <main>
         <HeroSection onNavigate={onNavigate} />
+        <ExpertiseSection />
         <SkillsSection />
         <ExperienciaSection />
         <FormacaoSection />

@@ -10,13 +10,6 @@
   width: fit-content;
 }
 
-/* Slide de projeto: texto + painel lado a lado, com LARGURA FIXA
-   em px pros dois (não max-width/flex-basis) — isso garante que
-   o bloco tenha sempre o mesmo tamanho, não importa a largura da
-   tela nem o tamanho do texto. Se a tela for menor que o total
-   necessário, o slide ganha scroll horizontal próprio em vez de
-   espremer o conteúdo (só acontece em janelas bem estreitas de
-   desktop; no mobile o layout é outro, ver @media abaixo). */
 .projeto-slide {
   width: 100vw;
   height: 100vh;
@@ -43,18 +36,13 @@
   text-align: left;
 }
 
-/* Slide 0 (grid de miniaturas) não segue o layout row acima —
-   é uma coluna centralizada (mantém a largura 100vw da base). */
 .projeto-slide-grid {
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   overflow-x: visible;
 }
 
-/* Caixa da descrição com ALTURA FIXA + scroll interno — é a parte
-   que mais varia de tamanho entre projetos (descrições curtas e
-   longas). Fixando essa caixa, o bloco inteiro do texto fica com
-   a mesma altura sempre, projeto A ou projeto Z. */
 .projeto-slide-desc-box {
   height: 100px;
   overflow-y: auto;
@@ -69,32 +57,44 @@
   justify-content: center;
 }
 
-/* Grid de miniaturas — todos os cards com a MESMA altura, não
-   importa o tamanho do nome do projeto (o nome longo é cortado
-   com reticências em vez de esticar o card). */
+.projetos-grid-scroll {
+  width: 100%;
+  max-width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.projetos-grid-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .projetos-grid-mini {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
   width: 100%;
-  max-width: 860px;
-  margin: 0 auto;
 }
 
 .projeto-mini-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 14px;
+  padding: 10px;
   border: 1px solid;
   border-radius: 10px;
   cursor: pointer;
-  transition:
-    border-color 0.2s,
-    transform 0.2s;
+  transition: transform 0.2s;
   font: inherit;
   text-align: left;
   height: 100%;
+}
+
+.projeto-mini-card:hover {
+  transform: translateY(-4px);
 }
 
 .projeto-mini-card-nome {
@@ -114,9 +114,6 @@
   text-align: right;
 }
 
-/* Em telas pequenas o pin horizontal é desativado (ver JS) —
-   aqui a seção vira uma lista vertical normal, e o índice
-   lateral não faz sentido nesse layout, então some. */
 @media (max-width: 768px) {
   .projetos-section {
     height: auto;
@@ -142,6 +139,11 @@
 
   .projeto-slide-mockup {
     width: 100%;
+  }
+
+  .projetos-grid-scroll {
+    max-height: none;
+    overflow-y: visible;
   }
 
   .projetos-grid-mini {

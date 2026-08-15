@@ -1,20 +1,12 @@
 // ============================================================
 //  COMPONENTE: Globe
 //  Globo 3D interativo com Three.js — esfera texturizada com um
-//  mapa-múndi (public/img/mapa-mundi.png, um asset PRÓPRIO do
-//  projeto, carregado do jeito padrão do Three.js, sem depender
-//  de nenhum truque de carregamento assíncrono escondido).
+//  mapa-múndi (public/img/mapa-mundi-noite.png, um asset PRÓPRIO
+//  do projeto, carregado do jeito padrão do Three.js).
 //
 //  Gira sozinho pra sempre (devagar); arrastando com o mouse/
 //  dedo, controla a rotação na direção que puxar. Clicar no
 //  marcador azul (Brasil) abre um balão com efeito de digitação.
-//
-//  Trocamos de "cobe" pra Three.js porque a cobe carrega sua
-//  textura via uma Image() com data-URI embutida, e esse
-//  carregamento estava falhando silenciosamente no navegador
-//  (sem erro no console) — resultado: globo sem os continentes.
-//  Usando nossa própria imagem com TextureLoader do Three.js,
-//  o carregamento é o caminho padrão/testado da biblioteca.
 // ============================================================
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
@@ -23,9 +15,6 @@ const LAT_LNG_BRASIL = { lat: -15.7801, lng: -47.9292 }; // Brasília
 const TEXTO_BALAO = "Localization: Brazil";
 const RAIO = 1;
 
-// Converte lat/lng (graus) pra posição 3D na superfície da esfera,
-// usando a mesma convenção de UV de uma SphereGeometry padrão do
-// Three.js (longitude 0 no "meridiano" da textura equiretangular).
 function latLngParaVec3(lat, lng, raio) {
     const phi = (90 - lat) * (Math.PI / 180);
     const theta = (lng + 180) * (Math.PI / 180);
@@ -38,7 +27,7 @@ function latLngParaVec3(lat, lng, raio) {
 
 export function Globe({ maxSize = 380 }) {
     const containerRef = useRef(null);
-    const marcador2DRef = useRef(null); // posição HTML do botão clicável (segue o marcador 3D)
+    const marcador2DRef = useRef(null);
 
     const rotacaoY = useRef(0);
     const arrastando = useRef(false);
@@ -47,12 +36,12 @@ export function Globe({ maxSize = 380 }) {
 
     const [balaoAberto, setBalaoAberto] = useState(false);
     const [textoDigitado, setTextoDigitado] = useState("");
+    const [erroTextura, setErroTextura] = useState(null);
 
     useEffect(() => {
         balaoAbertoRef.current = balaoAberto;
     }, [balaoAberto]);
 
-    // Efeito de "digitação" do texto do balão
     useEffect(() => {
         if (!balaoAberto) return;
         let i = 0;
@@ -73,36 +62,54 @@ export function Globe({ maxSize = 380 }) {
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 10);
-        camera.position.z = 2.6;
+        camera.position.z = 3.2;
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.domElement.style.width = "100%";
+        renderer.domElement.style.height = "100%";
+        renderer.domElement.style.display = "block";
         container.appendChild(renderer.domElement);
 
-        // Grupo que gira (facilita separar rotação automática de drag)
         const grupo = new THREE.Group();
         scene.add(grupo);
 
-        // Esfera com a textura do mapa-múndi
-        const loader = new THREE.TextureLoader();
-        const textura = loader.load("/img/mapa-mundi-noite.png");
-        textura.colorSpace = THREE.SRGBColorSpace;
-        textura.anisotropy = renderer.capabilities.getMaxAnisotropy();
-
         const geometria = new THREE.SphereGeometry(RAIO, 64, 64);
-        const material = new THREE.MeshBasicMaterial({ map: textura });
+        const material = new THREE.MeshBasicMaterial({ color: 0x111111 });
         const esfera = new THREE.Mesh(geometria, material);
         grupo.add(esfera);
 
-        // Brilho sutil ao redor (esfera levemente maior, de trás pra frente,
-        // só a borda visível — imita o "glow" atmosférico)
+        let texturaAtual = null;
+        const img = new Image();
+        img.onload = () => {
+            console.log("[Globe] Textura carregada com sucesso:", img.width, "x", img.height);
+            const canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext("2d");
+            ctx.filter = "brightness(1.35) saturate(1.1)";
+            ctx.drawImage(img, 0, 0);
+
+            texturaAtual = new THREE.CanvasTexture(canvas);
+            texturaAtual.colorSpace = THREE.SRGBColorSpace;
+            texturaAtual.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+            material.color.set(0xffffff);
+            material.map = texturaAtual;
+            material.needsUpdate = true;
+        };
+        img.onerror = (erro) => {
+            console.error("[Globe] Falha ao carregar a textura:", erro);
+            setErroTextura("Não consegui carregar /img/mapa-mundi-noite.png — confira o Console (F12) pra mais detalhes.");
+        };
+        img.src = "/img/mapa-mundi-noite.png";
+
         const glowGeometria = new THREE.SphereGeometry(RAIO * 1.04, 64, 64);
         const glowMaterial = new THREE.MeshBasicMaterial({
             color: 0x5599ff, transparent: true, opacity: 0.15, side: THREE.BackSide,
         });
         scene.add(new THREE.Mesh(glowGeometria, glowMaterial));
 
-        // Marcador (ponto azul) na posição de Brasília
         const marcadorGeometria = new THREE.SphereGeometry(0.025, 16, 16);
         const marcadorMaterial = new THREE.MeshBasicMaterial({ color: 0x4088ff });
         const marcador = new THREE.Mesh(marcadorGeometria, marcadorMaterial);
@@ -111,7 +118,7 @@ export function Globe({ maxSize = 380 }) {
 
         function ajustarTamanho() {
             const tamanho = container.clientWidth;
-            renderer.setSize(tamanho, tamanho);
+            renderer.setSize(tamanho, tamanho, false);
             camera.aspect = 1;
             camera.updateProjectionMatrix();
         }
@@ -125,12 +132,11 @@ export function Globe({ maxSize = 380 }) {
             }
             grupo.rotation.y = rotacaoY.current;
 
-            // Atualiza a posição 2D do botão clicável, seguindo o marcador 3D
             const posMundo = marcador.getWorldPosition(new THREE.Vector3());
             const posTela = posMundo.clone().project(camera);
-            const normal = posMundo.clone().normalize(); // esfera centrada na origem
+            const normal = posMundo.clone().normalize();
             const paraCamera = camera.position.clone().sub(posMundo).normalize();
-            const visivel = normal.dot(paraCamera) > 0; // > 0 = lado voltado pra câmera
+            const visivel = normal.dot(paraCamera) > 0;
             const el = marcador2DRef.current;
             if (el) {
                 el.style.left = ((posTela.x + 1) / 2) * 100 + "%";
@@ -144,7 +150,6 @@ export function Globe({ maxSize = 380 }) {
         }
         animar();
 
-        // --- Drag (mouse e touch) ---
         function onDragStart(clientX) {
             arrastando.current = true;
             ultimoX.current = clientX;
@@ -183,17 +188,23 @@ export function Globe({ maxSize = 380 }) {
             glowMaterial.dispose();
             marcadorGeometria.dispose();
             marcadorMaterial.dispose();
-            textura.dispose();
+            texturaAtual?.dispose();
             if (container.contains(dom)) container.removeChild(dom);
         };
     }, []);
 
     return (
         <div style={{ width: "100%", maxWidth: maxSize, aspectRatio: 1, margin: "0 auto", position: "relative" }}>
-            <div ref={containerRef} style={{ width: "100%", height: "100%" }} />
+            <div ref={containerRef} style={{ width: "100%", height: "100%", overflow: "hidden", borderRadius: "50%" }} />
 
-            {/* Botão invisível posicionado em cima do marcador 3D — só
-          existe pra capturar o clique e ancorar o balão */}
+            {erroTextura && (
+                <p style={{
+                    position: "absolute", top: "100%", left: 0, right: 0, marginTop: 8,
+                    fontFamily: "'Fira Code', monospace", fontSize: 11, color: "#ff6b6b",
+                    textAlign: "center", lineHeight: 1.4,
+                }}>{erroTextura}</p>
+            )}
+
             <button
                 ref={marcador2DRef}
                 onClick={() => {

@@ -5,6 +5,31 @@
 // ============================================================
 
 // ── INFORMAÇÕES PESSOAIS ─────────────────────────────────────
+// ── EXPERTISE ────────────────────────────────────────────────
+export const EXPERTISE = [
+  {
+    tituloDestaque: "Full Stack",
+    tituloResto: "Development",
+    cor: "#ff4fa3",
+    icone: "monitor",
+    descricao: "Experiência tanto em back-end quanto front-end: JavaScript, React, Node.js, Python, Java e MySQL.",
+  },
+  {
+    tituloDestaque: "Frontend",
+    tituloResto: "React & Animações",
+    cor: "#4f8cff",
+    icone: "atom",
+    descricao: "Apaixonado por UI/UX. Interfaces modernas com React, GSAP, Three.js e Lenis pra scroll e animações fluidas.",
+  },
+  {
+    tituloDestaque: "Backend &",
+    tituloResto: "Automação",
+    cor: "#ff8a3d",
+    icone: "server",
+    descricao: "APIs com Node.js e Python, bancos MySQL/PostgreSQL, e automações de fluxos com n8n e Docker.",
+  },
+];
+
 export const PERFIL = {
   nome: "Lucas Cruz",
   titulo: "Desenvolvedor Full Stack",
@@ -58,6 +83,9 @@ export const SKILLS = [
 ];
 
 // ── PROJETOS ─────────────────────────────────────────────────
+// PROJETOS: só os 3 que aparecem com painel detalhado (slides
+// individuais no scroll horizontal) — poucos de propósito, pra
+// não deixar o scroll da seção muito longo.
 export const PROJETOS = [
   {
     nome: "Mac Gym",
@@ -86,6 +114,12 @@ export const PROJETOS = [
     url: "#",
     github: "https://github.com/lucas-f-cruz/damiao-capotaria",
   },
+];
+
+// TODOS_PROJETOS: a lista completa, usada só no grid de miniaturas
+// (slide 0) — inclui os 3 acima + o restante do portfólio.
+export const TODOS_PROJETOS = [
+  ...PROJETOS,
   {
     nome: "Portfólio Pessoal",
     categoria: "PORTFÓLIO",
@@ -100,9 +134,144 @@ export const PROJETOS = [
     categoria: "APLICATIVO WEB",
     ferramentas: ["React", "Vite", "CSS"],
     funcao: "Desenvolvedor Frontend e Backend",
-    descricao: "Site de alerta médico com informações de saúde dos medicamentos cadastrados, usando React para frontend e backend integração com API de medicamentos futuro.",
+    descricao: "Site de alerta médico com informações de saúde dos medicamentos cadastrados.",
     url: "#",
     github: "https://github.com/lucas-f-cruz/medalert",
+  },
+  {
+    nome: "Boltfit Academia",
+    categoria: "LANDING PAGE",
+    ferramentas: ["React"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Landing page de academia com carrossel, planos, modalidades e horários.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/boltfit_academia",
+  },
+  {
+    nome: "Vinicius Personalizados",
+    categoria: "LANDING PAGE",
+    ferramentas: ["React", "Vite"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Site com identidade visual customizável (cores e animações via tema) e carrossel.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/vinicius_personalizados",
+  },
+  {
+    nome: "Nogcell",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["React"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Site institucional com Hero, seção de serviços e estatísticas.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/nogcell",
+  },
+  {
+    nome: "Clínica Médica",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Site para consultório de nutrição, com botão de WhatsApp flutuante.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/clinica-medica",
+  },
+  {
+    nome: "Clínica Estética",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Clínica de estética — tratamentos faciais e corporais, com WhatsApp.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/clinica-estetica",
+  },
+  {
+    nome: "Consultório Odontológico",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Clínica odontológica — implantes, ortodontia e mais, com WhatsApp.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/consultorio-odontologico",
+  },
+  {
+    nome: "Advocacia",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Escritório de advocacia com várias áreas do direito atendidas.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/advocacia",
+  },
+  {
+    nome: "Salão de Beleza",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Salão de beleza e barbearia, com botão de WhatsApp flutuante.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/salao-beleza",
+  },
+  {
+    nome: "Restaurante Pizzaria",
+    categoria: "LANDING PAGE",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Pizzaria artesanal com foco em delivery e cardápio digital.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/restaurante-pizzaria",
+  },
+  {
+    nome: "Oficina Mecânica",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Site institucional para oficina mecânica especializada.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/oficina-mecanica",
+  },
+  {
+    nome: "Loja de Roupa",
+    categoria: "LANDING PAGE",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Boutique de moda feminina — vitrine digital com catálogo visual.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/loja-roupa",
+  },
+  {
+    nome: "Pet Shop",
+    categoria: "SITE INSTITUCIONAL",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Pet shop e clínica veterinária, com botão de WhatsApp flutuante.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/petshop",
+  },
+  {
+    nome: "Lanchonete Clean",
+    categoria: "LANDING PAGE",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Lanchonete artesanal — versão com visual mais clean e minimalista.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/lanchonete-clean",
+  },
+  {
+    nome: "Lanchonete Gerl",
+    categoria: "LANDING PAGE",
+    ferramentas: ["HTML", "CSS", "JavaScript"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Lanchonete artesanal — outra variante visual do cardápio digital.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/lanchonete-gerl",
+  },
+  {
+    nome: "Roteiro Litúrgico",
+    categoria: "PROJETO PESSOAL",
+    ferramentas: ["HTML", "CSS"],
+    funcao: "Desenvolvedor Frontend",
+    descricao: "Roteiro litúrgico musical pra ministério de música — gestão de repertório.",
+    url: "#",
+    github: "https://github.com/lucas-f-cruz/repertoriosDev",
   },
 ];
 
@@ -112,13 +281,19 @@ export const EXPERIENCIAS = [
     periodo: "2025 - Atual",
     cargo: "Desenvolvedor Full Stack Freelancer",
     empresa: "Autônomo",
-    desc: "Desenvolvimento de sites e sistemas para clientes locais.",
+    local: "Ceará-Mirim, RN",
+    site: "github.com/lucas-f-cruz",
+    desc: "Desenvolvimento de sites e sistemas sob medida para clientes locais, do front-end ao back-end, incluindo integração com banco de dados e automações.",
+    tecnologias: ["React", "Node.js", "MySQL", "JavaScript"],
   },
   {
     periodo: "2026 - Atual",
     cargo: "Desenvolvedor Frontend",
     empresa: "Projetos Pessoais",
-    desc: "Criação de interfaces modernas com React e integração com APIs.",
+    local: "Remoto",
+    site: "",
+    desc: "Criação de interfaces modernas com React, animações com GSAP e integração com APIs, em projetos autorais de portfólio.",
+    tecnologias: ["React", "Vite", "GSAP", "Three.js"],
   },
 ];
 
